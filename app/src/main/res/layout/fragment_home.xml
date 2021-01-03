@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="phone number #1"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:layout_alignParentTop="true"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="phone number #2"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:layout_below="@id/first_phone_number"
@@ -54,17 +54,16 @@
             android:layout_below="@id/sendButton"
             android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:id="@+id/checkInButton"
-            android:layout_width="500px"
-            android:layout_height="300px"
-            android:text="Check-in"
+        <TextView
+            android:id="@+id/amt_until_panic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
             android:layout_below="@id/amt_of_days_before_panic"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="50px"
-            android:layout_marginBottom="50px">
-        </Button>
+            android:layout_marginBottom="50px"/>
 
     </RelativeLayout>
 </FrameLayout>

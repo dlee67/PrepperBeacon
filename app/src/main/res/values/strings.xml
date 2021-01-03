@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BunkerBeacon</string>
+    <string name="app_name">PrepperBeacon</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -13,7 +13,7 @@
         where I am a person who enjoys solitude; however,\n
         I want folks to know that there is something wrong going on in my life if there is one.\n
         \n
-        That\'s why I started writing this app.\n
+        That\'s why I wrote this app.\n
         \n
         It wants the user to input two phone numbers, and the amount of days before it panics.\n
         When the user presses the check-in button,\n
