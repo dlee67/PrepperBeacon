@@ -1,4 +1,4 @@
-package com.example.bunkerbeacon
+package com.example.bunkerbeacon.fragments
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -20,9 +20,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.bunkerbeacon.receiver.AlarmReceiver
+import com.example.bunkerbeacon.R
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
-import java.util.TimeZone;
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,18 +62,9 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val homeFragment = inflater.inflate(R.layout.fragment_home, container, false)
-
-        notificationManager = context?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        initClassVars(homeFragment)
 
         var alarmManager = context?.getSystemService(ALARM_SERVICE) as AlarmManager
-        firstNumberView = homeFragment.findViewById(R.id.first_phone_number)
-        secondNumberView = homeFragment.findViewById(R.id.second_phone_number)
-        daysBeforePanicView = homeFragment.findViewById(R.id.amt_of_days_before_panic)
-        panicDate = homeFragment.findViewById(R.id.amt_until_panic_text)
-        preferences = activity?.getPreferences(MODE_PRIVATE)
-
-        panicDate.text = preferences?.getString("persist-string-panic-date",
-                "Calm like the falling snow")
 
         homeFragment.findViewById<Button>(R.id.sendButton).setOnClickListener {
             Log.i("dhl", "Sending message")
@@ -105,7 +97,7 @@ class HomeFragment : Fragment() {
                     alarmManager?.setExactAndAllowWhileIdle(
                             AlarmManager.ELAPSED_REALTIME_WAKEUP,
                             // elapsedRealtime() is required to actually the correct amount of pass.
-                            SystemClock.elapsedRealtime() + waitInterval,
+                            SystemClock.elapsedRealtime() + 10000, // 10 seconds
                             pendingIntent)
                 }
 
@@ -143,16 +135,19 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun initClassVars(homeFragment: View) {
+        notificationManager = context?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        firstNumberView = homeFragment.findViewById(R.id.first_phone_number)
+        secondNumberView = homeFragment.findViewById(R.id.second_phone_number)
+        daysBeforePanicView = homeFragment.findViewById(R.id.amt_of_days_before_panic)
+        panicDate = homeFragment.findViewById(R.id.amt_until_panic_text)
+        preferences = activity?.getPreferences(MODE_PRIVATE)
+
+        panicDate.text = preferences?.getString("persist-string-panic-date",
+            "Calm like the falling snow")
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
                 HomeFragment().apply {

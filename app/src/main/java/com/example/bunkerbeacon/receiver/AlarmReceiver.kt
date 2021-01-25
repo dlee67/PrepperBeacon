@@ -1,4 +1,4 @@
-package com.example.bunkerbeacon
+package com.example.bunkerbeacon.receiver
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,6 +8,8 @@ import android.content.Intent
 import android.telephony.SmsManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.bunkerbeacon.MainActivity
+import com.example.bunkerbeacon.R
 
 class AlarmReceiver: BroadcastReceiver() {
 
